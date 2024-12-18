@@ -205,10 +205,10 @@ const Home = () => {
             {/* Display API Response */}
             {apiResponse && (
                 <Box sx={{ mt: 4 }}>
-                            <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
+                  <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
             )}
         </div>
-        
+
     );
 };
 
