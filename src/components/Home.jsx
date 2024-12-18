@@ -12,7 +12,9 @@ import {
     TextField,
     Button,
     Paper,
-    CircularProgress
+    CircularProgress,
+    Card,
+    CardContent
 } from "@mui/material";
 import axios from "axios";
 import { getPlatforms, getModelsByPlatform, getLLMResponse } from "../services/apiService";
