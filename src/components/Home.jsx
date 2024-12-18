@@ -201,11 +201,17 @@ const Home = () => {
                 </Paper>
             )}
 
-            {/* Display API Response */}
+            <Box sx={{ display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center'}}>
+                  {/* Display API Response */}
             {apiResponse && (
                 <Box sx={{ mt: 4 }}>
                     <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
             )}
+            </Box>
+          
         </div>
 
     );
