@@ -78,13 +78,23 @@ const Home = () => {
             const response = await getLLMResponse(payload);
             setResponsePrompt(prompt);
             setApiResponse(response?.modelreply || "No response received.");
-            console.log("Response:", response.modelreply);
         } catch (error) {
             console.error("Error sending request:", error);
             setApiResponse("Error generating response. Please try again.");
         } finally {
             setLoading(false);
         }
+    };
+
+    const formatApiResponse = (response) => {
+        if (!response) return "";
+        // Replace **text** with bold markup
+        return response.split(/(\*\*.*?\*\*)/g).map((part, index) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+                return <b key={index}>{part.replace(/\*\*/g, "")}</b>;
+            }
+            return part;
+        });
     };
 
     return (
@@ -195,11 +205,10 @@ const Home = () => {
             {/* Display API Response */}
             {apiResponse && (
                 <Box sx={{ mt: 4 }}>
-                    <Typography variant="body1" sx={{ fontWeight: "bold" }}>API Response:</Typography>
-                    <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>{apiResponse}</Typography>
-                </Box>
+                            <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
             )}
         </div>
+        
     );
 };
 
