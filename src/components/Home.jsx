@@ -77,8 +77,8 @@ const Home = () => {
         try {
             const response = await getLLMResponse(payload);
             setResponsePrompt(prompt);
-            setApiResponse(response.data?.response || "No response received.");
-            console.log("Response:", response.data);
+            setApiResponse(response?.modelreply || "No response received.");
+            console.log("Response:", response.modelreply);
         } catch (error) {
             console.error("Error sending request:", error);
             setApiResponse("Error generating response. Please try again.");
@@ -189,16 +189,6 @@ const Home = () => {
                             <CircularProgress size={24} />
                         </Box>
                     )}
-
-                    {/* Display Requested Prompt */}
-                    {responsePrompt && (
-                        <Box sx={{ mt: 4 }}>
-                            <Typography variant="body1" sx={{ fontWeight: "bold" }}>Requested Prompt:</Typography>
-                            <Typography variant="body2">{responsePrompt}</Typography>
-                        </Box>
-                    )}
-
-
                 </Paper>
             )}
 
