@@ -13,6 +13,6 @@ export const getModelsByPlatform = async (platform) => {
 };
 
 export const getLLMResponse = async (data) => {
-  const response = await axios.put(`${BASE_URL}/get_llm_response/`, data);
+  const response = await axios.put(`${BASE_URL}//get_llm_response/`, data);
   return response.data;
 };
