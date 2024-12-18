@@ -203,25 +203,21 @@ const Home = () => {
                 </Paper>
             )}
 
-            <Box sx={{ display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center'}}>
-                  {/* Display API Response */}
-            {/* {apiResponse && (
-                <Box sx={{ mt: 4 }}>
-                    <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
-            )} */}
-            {apiResponse && (
-                <Card elevation={3} sx={{ mt: 4, mx: "auto", maxWidth: 600, backgroundColor: '#f5f5f5', border: '1px solid #ddd', borderRadius: 2, boxShadow: 2 }}>
-                    <CardContent>
-                        <Typography variant="h6" sx={{ fontWeight: "bold", color: "#6c5ce7", mb: 2 }}>API Response:</Typography>
-                        <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>
-                    </CardContent>
-                </Card>
-            )}
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                {apiResponse && (
+                    <Card elevation={3} sx={{ mt: 4, mx: "auto", maxWidth: 780, backgroundColor: '#f5f5f5', border: '1px solid #ddd', borderRadius: 2, boxShadow: 2 }}>
+                        <CardContent>
+                            <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>
+                        </CardContent>
+                    </Card>
+                )}
             </Box>
-          
+
         </div>
 
     );
