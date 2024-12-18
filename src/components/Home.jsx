@@ -183,7 +183,6 @@ const Home = () => {
                         </Box>
                     )}
 
-                    {/* Submit Button */}
                     <Button
                         variant="contained"
                         sx={{ backgroundColor: "#6c5ce7", mt: 2 }}
@@ -205,7 +204,7 @@ const Home = () => {
             {/* Display API Response */}
             {apiResponse && (
                 <Box sx={{ mt: 4 }}>
-                  <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
+                    <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>                </Box>
             )}
         </div>
 
