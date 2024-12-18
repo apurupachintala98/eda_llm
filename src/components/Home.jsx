@@ -209,7 +209,18 @@ const Home = () => {
             <Banner />
 
             {/* Platform Selection */}
-            <Box display="flex" justifyContent="center" mt={4}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    mt: 4
+                }}
+            >
+            <Typography variant="h5" gutterBottom sx={{alignItems: 'left', fontWeight: 'bold', fontFamily: 'Roboto, sans-serif', fontSize:"20px", color: "#6c5ce7" }}>
+                    Choose LLM Platform
+                </Typography>
                 <FormControl sx={{ width: 300 }}>
                     <InputLabel id="platform-select-label">Choose LLM Platform</InputLabel>
                     <Select
