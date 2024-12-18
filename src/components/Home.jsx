@@ -29,7 +29,6 @@
 //     const [selectedPlatform, setSelectedPlatform] = useState("");
 //     const [selectedModel, setSelectedModel] = useState("");
 //     const [prompt, setPrompt] = useState("");
-//     const [showLLMOptions, setShowLLMOptions] = useState(false); // To control UI display
 
 //     useEffect(() => {
 //         const fetchPlatforms = async () => {
@@ -73,19 +72,37 @@
 //             {/* Banner */}
 //             <Banner />
 
-//             {/* Choose LLM Button */}
-//             <Box display="flex" justifyContent="center" mt={4}>
-//                 <Button
-//                     variant="contained"
-//                     onClick={() => setShowLLMOptions(true)}
-//                     sx={{ backgroundColor: "#6c5ce7", color: "#fff", fontWeight: "bold" }}
-//                 >
-//                     Choose LLM
-//                 </Button>
+//             {/* Platform Selection */}
+//             <Box
+//                 sx={{
+//                     display: 'flex',
+//                     flexDirection: 'column',
+//                     alignItems: 'center',
+//                     justifyContent: 'center',
+//                     mt: 4
+//                 }}
+//             >
+//             <Typography variant="h5" gutterBottom sx={{alignItems: 'left', fontWeight: 'bold', fontFamily: 'Roboto, sans-serif', fontSize:"20px", color: "#6c5ce7" }}>
+//                     Choose LLM Platform
+//                 </Typography>
+//                 <FormControl sx={{ width: 300 }}>
+//                     <InputLabel id="platform-select-label">Choose LLM Platform</InputLabel>
+//                     <Select
+//                         labelId="platform-select-label"
+//                         value={selectedPlatform}
+//                         onChange={handlePlatformChange}
+//                     >
+//                         {platforms.map((platform) => (
+//                             <MenuItem key={platform} value={platform}>
+//                                 {platform}
+//                             </MenuItem>
+//                         ))}
+//                     </Select>
+//                 </FormControl>
 //             </Box>
 
 //             {/* Conditional Dropdowns and Input */}
-//             {showLLMOptions && (
+//             {selectedPlatform && (
 //                 <Paper elevation={3} sx={{ padding: 4, mt: 4, mx: "auto", maxWidth: 600 }}>
 //                     {/* Select Model */}
 //                     <Typography variant="h6" mb={2} sx={{ fontWeight: "bold", color: "#6c5ce7" }}>
@@ -134,6 +151,7 @@
 
 // export default Home;
 
+
 import React, { useEffect, useState } from "react";
 import { styled } from '@mui/system';
 import {
@@ -149,8 +167,11 @@ import {
     Button,
     Paper
 } from "@mui/material";
+import axios from "axios";
 import { getPlatforms, getModelsByPlatform } from "../services/apiService";
 import LLM_Image from '../assests/images/LLM.png';
+
+const BASE_URL = "http://10.126.192.122:8000";
 
 const Banner = styled(Box)({
     height: '650px',
@@ -165,6 +186,7 @@ const Home = () => {
     const [selectedPlatform, setSelectedPlatform] = useState("");
     const [selectedModel, setSelectedModel] = useState("");
     const [prompt, setPrompt] = useState("");
+    const [responsePrompt, setResponsePrompt] = useState("");
 
     useEffect(() => {
         const fetchPlatforms = async () => {
@@ -192,6 +214,22 @@ const Home = () => {
 
     const handleModelChange = (event) => {
         setSelectedModel(event.target.value);
+    };
+
+    const handleSubmit = async () => {
+        const payload = {
+            method: selectedPlatform, // Take method value from the selected platform
+            model: selectedModel,
+            context: "You are powerful AI assistant in providing accurate answers always. Be Concise in providing answers based on context.",
+            prompt: prompt,
+        };
+        try {
+            const response = await axios.post(`${BASE_URL}/get_llm_response/`, payload);
+            setResponsePrompt(prompt);
+            console.log("Response:", response.data);
+        } catch (error) {
+            console.error("Error sending request:", error);
+        }
     };
 
     return (
@@ -270,15 +308,21 @@ const Home = () => {
                     />
 
                     {/* Submit Button */}
-                    <Typography variant="body1" sx={{ mt: 2 }}>
-                        Selected model: {selectedModel || "None"}
-                    </Typography>
-                    <Typography variant="body1" sx={{ mb: 2 }}>
-                        Requested Prompt:
-                    </Typography>
-                    <Button variant="contained" sx={{ backgroundColor: "#6c5ce7" }}>
+                    <Button
+                        variant="contained"
+                        sx={{ backgroundColor: "#6c5ce7", mt: 2 }}
+                        onClick={handleSubmit}
+                    >
                         Submit
                     </Button>
+
+                    {/* Display Requested Prompt */}
+                    {responsePrompt && (
+                        <Box sx={{ mt: 4 }}>
+                            <Typography variant="body1" sx={{ fontWeight: "bold" }}>Requested Prompt:</Typography>
+                            <Typography variant="body2">{responsePrompt}</Typography>
+                        </Box>
+                    )}
                 </Paper>
             )}
         </div>
