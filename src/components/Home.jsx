@@ -100,7 +100,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <Box sx={{mb: 2}}>
             {/* Header */}
             <AppBar position="static" sx={{ backgroundColor: "#fff" }}>
                 <Toolbar>
@@ -218,7 +218,7 @@ const Home = () => {
                 )}
             </Box>
 
-        </div>
+        </Box>
 
     );
 };
