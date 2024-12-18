@@ -448,7 +448,7 @@ const Home = () => {
                     mt: 4
                 }}
             >
-            <Typography variant="h5" gutterBottom sx={{alignItems: 'left', fontWeight: 'bold', fontFamily: 'Roboto, sans-serif', fontSize:"20px", color: "#6c5ce7" }}>
+                <Typography variant="h5" gutterBottom sx={{ alignItems: 'left', fontWeight: 'bold', fontFamily: 'Roboto, sans-serif', fontSize: "20px", color: "#6c5ce7" }}>
                     Choose LLM Platform
                 </Typography>
                 <FormControl sx={{ width: 300 }}>
@@ -499,6 +499,17 @@ const Home = () => {
                         onChange={(e) => setPrompt(e.target.value)}
                     />
 
+                    <Typography variant="body1" sx={{ mt: 2 }}>
+                        Selected model: {selectedModel || "None"}
+                    </Typography>
+                    {/* Display Requested Prompt */}
+                    {responsePrompt && (
+                        <Box sx={{ mt: 4 }}>
+                            <Typography variant="body1" sx={{ fontWeight: "bold" }}>Requested Prompt:</Typography>
+                            <Typography variant="body2">{responsePrompt}</Typography>
+                        </Box>
+                    )}
+
                     {/* Submit Button */}
                     <Button
                         variant="contained"
@@ -524,14 +535,16 @@ const Home = () => {
                         </Box>
                     )}
 
-                    {/* Display API Response */}
-                    {apiResponse && (
-                        <Box sx={{ mt: 4 }}>
-                            <Typography variant="body1" sx={{ fontWeight: "bold" }}>API Response:</Typography>
-                            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>{apiResponse}</Typography>
-                        </Box>
-                    )}
+
                 </Paper>
+            )}
+
+            {/* Display API Response */}
+            {apiResponse && (
+                <Box sx={{ mt: 4 }}>
+                    <Typography variant="body1" sx={{ fontWeight: "bold" }}>API Response:</Typography>
+                    <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>{apiResponse}</Typography>
+                </Box>
             )}
         </div>
     );
