@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://10.126.192.122:8000";
 
 export const getPlatforms = async () => {
-  const response = await axios.get(`${BASE_URL}/llm_platform`);
+  const response = await axios.get(`${BASE_URL}//llm_platform`);
   return response.data;
 };
 
