@@ -127,11 +127,11 @@ const Home = () => {
                     Choose LLM Platform
                 </Typography>
                 <FormControl sx={{ width: 300 }}>
-                    <InputLabel id="platform-select-label">Choose LLM Platform</InputLabel>
+                    {/* <InputLabel id="platform-select-label">Choose LLM Platform</InputLabel> */}
                     <Select
                         value={selectedPlatform}
                         onChange={handlePlatformChange}
-                        sx={{ backgroundColor: 'white' }}
+                        sx={{ backgroundColor: 'white', textAlign: "left" }}
 
                     >
                         {platforms.map((platform) => (
@@ -154,11 +154,11 @@ const Home = () => {
 
                     {/* Model Selection */}
                     <FormControl fullWidth margin="normal">
-                        <InputLabel id="model-select-label">Select your model</InputLabel>
+                        {/* <InputLabel id="model-select-label">Select your model</InputLabel> */}
                         <Select
                             value={selectedModel}
                             onChange={handleModelChange}
-                            sx={{ backgroundColor: 'white' }}
+                            sx={{ backgroundColor: 'white', textAlign: "left" }}
 
                         >
                             {models.map((model) => (
