@@ -23,7 +23,7 @@ import LLM_Image from '../assests/images/LLM.png';
 const BASE_URL = "http://10.126.192.122:8000";
 
 const Banner = styled(Box)({
-    height: '650px',
+    height: '600px',
     backgroundImage: `url(${LLM_Image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -105,7 +105,7 @@ const Home = () => {
             <AppBar position="static" sx={{ backgroundColor: "#fff" }}>
                 <Toolbar>
                     <Typography variant="h6" sx={{ color: "#6c5ce7", fontWeight: "bold" }}>
-                        EDA LLM GW
+                        Data Intelligence Platform - LLM Gateway
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -129,9 +129,10 @@ const Home = () => {
                 <FormControl sx={{ width: 300 }}>
                     <InputLabel id="platform-select-label">Choose LLM Platform</InputLabel>
                     <Select
-                        labelId="platform-select-label"
                         value={selectedPlatform}
                         onChange={handlePlatformChange}
+                        sx={{ backgroundColor: 'white' }}
+
                     >
                         {platforms.map((platform) => (
                             <MenuItem key={platform} value={platform}>
@@ -140,6 +141,7 @@ const Home = () => {
                         ))}
                     </Select>
                 </FormControl>
+                
             </Box>
 
             {/* Conditional Dropdowns and Input */}
@@ -154,13 +156,15 @@ const Home = () => {
                     <FormControl fullWidth margin="normal">
                         <InputLabel id="model-select-label">Select your model</InputLabel>
                         <Select
-                            labelId="model-select-label"
                             value={selectedModel}
                             onChange={handleModelChange}
+                            sx={{ backgroundColor: 'white' }}
+
                         >
                             {models.map((model) => (
                                 <MenuItem key={model} value={model}>{model}</MenuItem>
                             ))}
+                            
                         </Select>
                     </FormControl>
 
@@ -175,7 +179,7 @@ const Home = () => {
                     />
 
                     <Typography variant="body1" sx={{ mt: 2 }}>
-                        Selected model: {selectedModel || "None"}
+                        <b>Selected model:</b> {selectedModel || "None"}
                     </Typography>
                     {/* Display Requested Prompt */}
                     {responsePrompt && (
