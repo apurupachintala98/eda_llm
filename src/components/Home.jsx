@@ -16,11 +16,8 @@ import {
     Card,
     CardContent
 } from "@mui/material";
-import axios from "axios";
 import { getPlatforms, getModelsByPlatform, getLLMResponse } from "../services/apiService";
 import LLM_Image from '../assests/images/LLM.png';
-
-const BASE_URL = "http://10.126.192.122:8000";
 
 const Banner = styled(Box)({
     height: '600px',
@@ -38,6 +35,14 @@ const Home = () => {
     const [responsePrompt, setResponsePrompt] = useState("");
     const [loading, setLoading] = useState(false);
     const [apiResponse, setApiResponse] = useState("");
+    const [context, setContext] = useState("");
+    const [customContext, setCustomContext] = useState("");
+
+    const defaultContexts = [
+        " You are a powerful assistant in converting Text to SQL.Read the following instructions carefully and strictly follow it without fail.",
+        "You are a  Text to SQL Assistant , Strictly use the context provided only and answer the asked question.",
+        "You are a powerful assistant in providing accurate answers based on given context"
+    ];
 
     useEffect(() => {
         const fetchPlatforms = async () => {
@@ -71,7 +76,8 @@ const Home = () => {
         const payload = {
             method: selectedPlatform, // Take method value from the selected platform
             model: selectedModel,
-            context: "You are powerful AI assistant in providing accurate answers always. Be Concise in providing answers based on context.",
+            context: customContext || context,
+            //context: "You are powerful AI assistant in providing accurate answers always. Be Concise in providing answers based on context.",
             prompt: prompt,
         };
         setLoading(true);
@@ -167,6 +173,33 @@ const Home = () => {
                             
                         </Select>
                     </FormControl>
+
+                     {/* Context Selection */}
+                     <Typography variant="h6" sx={{ mt: 2, fontWeight: "bold", color: "#6c5ce7" }}>
+                        Choose Context or Enter Custom
+                    </Typography>
+                    <FormControl fullWidth margin="normal">
+                        <Select
+                            value={context}
+                            onChange={(e) => setContext(e.target.value)}
+                            sx={{ backgroundColor: 'white' }}
+                        >
+                            {defaultContexts.map((defaultContext, index) => (
+                                <MenuItem key={index} value={defaultContext}>
+                                    {defaultContext}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        placeholder="Enter custom context (optional)"
+                        value={customContext}
+
+                        onChange={(e) => setCustomContext(e.target.value)}
+                    />
 
                     {/* Prompt Input */}
                     <TextField
