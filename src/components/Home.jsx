@@ -100,7 +100,7 @@ const Home = () => {
     };
 
     return (
-        <Box sx={{mb: 2}}>
+        <Box sx={{marginBottom: "50px"}}>
             {/* Header */}
             <AppBar position="static" sx={{ backgroundColor: "#fff" }}>
                 <Toolbar>
@@ -170,7 +170,6 @@ const Home = () => {
 
                     {/* Prompt Input */}
                     <TextField
-                        label="Provide Prompt"
                         fullWidth
                         margin="normal"
                         variant="outlined"
@@ -214,7 +213,7 @@ const Home = () => {
                 justifyContent: 'center'
             }}>
                 {apiResponse && (
-                    <Card elevation={3} sx={{ mt: 4, mx: "auto", maxWidth: 780, backgroundColor: '#f5f5f5', border: '1px solid #ddd', borderRadius: 2, boxShadow: 2 }}>
+                    <Card elevation={3} sx={{ mt: 4, mx: "auto", maxWidth: 670, backgroundColor: '#f5f5f5', border: '1px solid #ddd', borderRadius: 2, boxShadow: 2 }}>
                         <CardContent>
                             <Typography variant="body2" sx={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{formatApiResponse(apiResponse)}</Typography>
                         </CardContent>
