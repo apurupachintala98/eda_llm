@@ -39,8 +39,8 @@ const Home = () => {
     const [customContext, setCustomContext] = useState("");
 
     const defaultContexts = [
-        " You are a powerful assistant in converting Text to SQL.Read the following instructions carefully and strictly follow it without fail.",
-        "You are a  Text to SQL Assistant , Strictly use the context provided only and answer the asked question.",
+        "You are a powerful assistant in converting Text to SQL.Read the following instructions carefully and strictly follow it without fail.",
+        "You are a Text to SQL Assistant, Strictly use the context provided only and answer the asked question.",
         "You are a powerful assistant in providing accurate answers based on given context"
     ];
 
