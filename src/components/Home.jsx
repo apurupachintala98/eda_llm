@@ -108,7 +108,7 @@ const Home = () => {
     return (
         <Box sx={{marginBottom: "50px"}}>
             {/* Header */}
-            <AppBar position="static" sx={{ backgroundColor: "#fff" }}>
+            <AppBar position="static" sx={{ backgroundColor: "#fff", alignItems: "center" }}>
                 <Toolbar>
                     <Typography variant="h6" sx={{ color: "#6c5ce7", fontWeight: "bold" }}>
                         Data Intelligence Platform - LLM Gateway
